@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // This class is for any game object that needs stats such as health, defence, and offence
@@ -17,7 +16,7 @@ public class Character : MonoBehaviour, ICharacter<int>
     protected bool dead;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    public virtual void Start()
     {
         health = startHealth;
         defence = startDefence;
