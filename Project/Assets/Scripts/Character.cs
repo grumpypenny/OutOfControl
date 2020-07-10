@@ -4,7 +4,7 @@ using UnityEngine;
 // This class is for any game object that needs stats such as health, defence, and offence
 public class Character : MonoBehaviour, ICharacter<int>
 {
-    // Base stats
+    [Header("Base stats")]
     public int startHealth;
     protected int health;
 
@@ -14,15 +14,20 @@ public class Character : MonoBehaviour, ICharacter<int>
     public int startBaseOffence;
     protected int baseOffence;
 
-    // Base stat multipliers
+    [Space]
+
+    [Header("Base stat multipliers")]
     public int startDefence;
     protected int defence;
 
     public int startOffence;
     protected int offence;
 
-    // Character states
+    [Space]
+
+    [Header("Character states")]
     protected bool dead;
+    protected bool isTaunting;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -36,6 +41,7 @@ public class Character : MonoBehaviour, ICharacter<int>
         offence = startOffence;
 
         dead = false;
+        isTaunting = false;
     }
 
     // Character takes damage damage
@@ -60,9 +66,19 @@ public class Character : MonoBehaviour, ICharacter<int>
         this.offence = offence;
     }
 
+    public int GetOffence()
+    {
+        return offence;
+    }
+
     public void SetDefence(int defence)
     {
         this.defence = defence;
+    }
+
+    public int GetDefence()
+    {
+        return defence;
     }
 
     // Method executed on death of character
@@ -72,4 +88,11 @@ public class Character : MonoBehaviour, ICharacter<int>
         GameObject.Destroy(gameObject);
     }
 
+    public void onTurnEnd()
+    {
+        defence = startDefence;
+        offence = startOffence;
+
+        isTaunting = false;
+    }
 }
