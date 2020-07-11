@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 {
 	public List<Card> turnActions;
 	public PlayableCharacter[] playableCharacters;
+	/// <summary>
+	/// Enemies in the level
+	/// </summary>
+	public EnemyCharacter[] enemies;
 	public GameObject CardObject;
 	public Transform[] CardPos;
 	private int index = 0;

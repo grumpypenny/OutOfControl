@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public EnemyCharacter[] enemies;
+
+    /// <summary>
+    /// Time for enemy attack anim
+    /// </summary>
     public float enemyAttackAnimTime = 1f;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="playableCharacters"></param>
+    /// <returns></returns>
     PlayableCharacter PickRandomPlayable(PlayableCharacter[] playableCharacters)
     {
         int weightDenom = 0;
@@ -29,7 +37,7 @@ public class EnemyManager : MonoBehaviour
         return playableCharacters[index];
     }
 
-    public IEnumerator StartEnemyTurn(PlayableCharacter[] playableCharacters, TurnSystem ts)
+    public IEnumerator StartEnemyTurn(EnemyCharacter[] enemies, PlayableCharacter[] playableCharacters, TurnSystem ts)
     {
         bool isTaunt = false;
         PlayableCharacter tauntPlayer = null;
@@ -59,11 +67,5 @@ public class EnemyManager : MonoBehaviour
         {
             ts.SetEnemyAction();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

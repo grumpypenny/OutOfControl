@@ -85,7 +85,7 @@ public class TurnSystem : MonoBehaviour
 		player2Done = false;
 		player3Done = false;
 
-		StartCoroutine(em.StartEnemyTurn(gm.playableCharacters, this));
+		StartCoroutine(em.StartEnemyTurn(gm.enemies, gm.playableCharacters, this));
 		// then enemy turn
 		yield return StartCoroutine(Enemy());
 
