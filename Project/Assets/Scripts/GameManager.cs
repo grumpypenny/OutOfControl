@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (PlayableCharacter pc in playableCharacters)
 		{
+			//  Get random card
 			int rando = Random.Range(0, turnActions.Count);
 			Card card = turnActions[rando];
 			turnActions.RemoveAt(rando);
