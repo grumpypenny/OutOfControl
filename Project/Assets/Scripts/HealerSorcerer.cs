@@ -7,22 +7,26 @@ public class HealerSorcerer : PlayableCharacter
     /// <summary>
     /// The amount this unit heals when this unit is a support
     /// </summary>
-    public float heal;
+    public float healAmount;
     public override void Start()
     {
         base.Start();
     }
 
-    // TODO: Do this on a random ally
     protected override void ActionCard()
     {
         if (isSupport)
         {
-            Heal(heal);
+            PlayableCharacter target = pm.GetLowestHealthPlayer();
+
+            if (target != null)
+            {
+                target.Heal(healAmount);
+            }
         }
         else
         {
-            // Enemy.TakeHit(offence * baseOffence * positionMultiplier[position])
+            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
         }
     }
 }

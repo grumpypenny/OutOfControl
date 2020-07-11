@@ -11,7 +11,7 @@ public class Character : MonoBehaviour, ICharacter<float>
 {
     [Header("Base stats")]
     public float startHealth;
-    protected float health;
+    public float health;
 
     public float startBaseDefence;
     protected float baseDefence;
@@ -32,7 +32,7 @@ public class Character : MonoBehaviour, ICharacter<float>
 
     [Header("Character states")]
     //public int position;
-    protected bool dead;
+    public bool dead;
     public bool isTaunting;
 
     // Start is called before the first frame update

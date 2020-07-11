@@ -29,12 +29,18 @@ public class PlayableCharacter : Character
     /// Tracks if character is acting as support role
     /// </summary>
     protected bool isSupport;
+
+    /// <summary>
+    /// Player targetting system
+    /// </summary>
+    protected PlayerManager pm;
     #endregion
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         starCardActive = false;
+        pm = FindObjectOfType<PlayerManager>();
     }
 
     /// <summary>

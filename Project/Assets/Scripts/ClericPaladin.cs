@@ -13,17 +13,16 @@ public class ClericPaladin : PlayableCharacter
         base.Start();
     }
 
-    // TODO: Do this on a random ally
     protected override void ActionCard()
     {
 
         if (isSupport)
         {
-            SetOffence(GetOffence() + clericOffenceBuff);
+            pm.GetRandomPlayer().SetOffence(GetOffence() + clericOffenceBuff);
         }
         else
         {
-            // Enemy.TakeHit(offence * baseOffence * positionMultiplier[position])
+            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
         }
     }
 }

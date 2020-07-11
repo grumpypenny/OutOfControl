@@ -14,7 +14,6 @@ public class DruidRanger : PlayableCharacter
         base.Start();
     }
 
-    // TODO: Do this on a random ally
     protected override void ActionCard()
     {
         //float effectMultiplier = positionMultiplier[position];
@@ -24,10 +23,10 @@ public class DruidRanger : PlayableCharacter
         //}
         if (isSupport)
         {
-            SetDefence(GetDefence() + druidDefenceBuff);
+            pm.GetRandomPlayer().SetDefence(GetDefence() + druidDefenceBuff);
         } else
         {
-            // Enemy.TakeHit(offence * baseOffence * effectMultiplier)
+            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
         }
     }
 }
