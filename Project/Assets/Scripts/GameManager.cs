@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 	public List<Card> turnActions;
+	public PlayableCharacter[] playableCharacters;
 	public GameObject CardObject;
 	public Transform[] CardPos;
 	private int index = 0;
@@ -53,6 +54,13 @@ public class GameManager : MonoBehaviour
 	// apply card effects
 	public void Execute()
 	{
-		print("executing cards");
+		foreach (PlayableCharacter pc in playableCharacters)
+		{
+			int rando = Random.Range(0, turnActions.Count);
+			Card card = turnActions[rando];
+			turnActions.RemoveAt(rando);
+
+			pc.SetCard(card);
+		}
 	}
 }

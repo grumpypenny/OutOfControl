@@ -76,6 +76,11 @@ public class PlayableCharacter : Character
         }
     }
 
+    public void SetCard(Card card)
+    {
+        this.card = card;
+    }
+
     /// <summary>
     /// Executes this character's specific effect.
     /// </summary>
