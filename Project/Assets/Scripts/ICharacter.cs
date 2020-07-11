@@ -9,5 +9,5 @@ public interface ICharacter<T>
     T GetOffence();
     void SetDefence(T defence);
     T GetDefence();
-    void resetStats();
+    void onTurnEnd();
 }

@@ -14,12 +14,6 @@ public class PlayableCharacter : Character
         starCardActive = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void UseCard()
     {
         if (card != null)

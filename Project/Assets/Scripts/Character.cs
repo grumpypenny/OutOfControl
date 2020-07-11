@@ -26,6 +26,7 @@ public class Character : MonoBehaviour, ICharacter<int>
     [Space]
 
     [Header("Character states")]
+    public int position;
     protected bool dead;
     protected bool isTaunting;
 
