@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DruidRanger : PlayableCharacter
 {
+    /// <summary>
+    /// The amount of defence this unit buffs when this unit is a support
+    /// </summary>
     public float druidDefenceBuff;
 
     public override void Start()

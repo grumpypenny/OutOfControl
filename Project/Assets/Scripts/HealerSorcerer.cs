@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HealerSorcerer : PlayableCharacter
 {
+    /// <summary>
+    /// The amount this unit heals when this unit is a support
+    /// </summary>
     public float heal;
     public override void Start()
     {

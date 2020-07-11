@@ -77,7 +77,7 @@ public class PlayableCharacter : Character
     }
 
     /// <summary>
-    /// Executed this character's specific effect.
+    /// Executes this character's specific effect.
     /// </summary>
     protected virtual void ActionCard()
     {
