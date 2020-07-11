@@ -22,7 +22,9 @@ public class TurnSystem : MonoBehaviour
 
 	private bool isGameOver = false;
 	private bool isDrawDone = false;
-	private bool isActionsDone = false;
+	private bool player1Done = false;
+	private bool player2Done = false;
+	private bool player3Done = false;
 	private bool isEnemyActionDone = false;
 
 	private GameManager gm;
@@ -44,9 +46,22 @@ public class TurnSystem : MonoBehaviour
 		isDrawDone = true;
 	}
 
-	public void SetActionDone()
+	public void SetActionDone(int player)
 	{
-		isActionsDone = true;
+		switch (player)
+		{
+			case 1:
+				player1Done = true;
+				break;
+			case 2:
+				player2Done = true;
+				break;
+			case 3:
+				player3Done = true;
+				break;
+		}
+
+
 	}
 
 	public void SetEnemyAction()
@@ -64,10 +79,12 @@ public class TurnSystem : MonoBehaviour
 
 		// reset bools
 		isDrawDone = false;
-		isActionsDone = false;
+		player1Done = false;
+		player2Done = false;
+		player3Done = false;
 
-		// then enemy turn
-		yield return StartCoroutine(Enemy());
+	// then enemy turn
+	yield return StartCoroutine(Enemy());
 
 		// reset bool
 		isEnemyActionDone = false;
@@ -107,7 +124,15 @@ public class TurnSystem : MonoBehaviour
 		}
 		// wait for characters to use actions
 		// actions implemented later
-		while (!isActionsDone)
+		while (!player1Done)
+		{
+			yield return null;
+		}
+		while (!player2Done)
+		{
+			yield return null;
+		}
+		while (!player3Done)
 		{
 			yield return null;
 		}
