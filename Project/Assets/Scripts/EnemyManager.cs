@@ -31,10 +31,28 @@ public class EnemyManager : MonoBehaviour
 
     public IEnumerator StartEnemyTurn(PlayableCharacter[] playableCharacters, TurnSystem ts)
     {
+        bool isTaunt = false;
+        PlayableCharacter tauntPlayer = null;
+
+        foreach (PlayableCharacter player in playableCharacters)
+        {
+            if (player.isTaunting)
+            {
+                tauntPlayer = player;
+                isTaunt = true;
+            }
+        }
+
         foreach (EnemyCharacter enemy in enemies)
         {
-            enemy.Attack(PickRandomPlayable(playableCharacters));
-            yield return new WaitForSeconds(enemyAttackAnimTime);
+            if (isTaunt)
+            {
+                enemy.Attack(tauntPlayer);
+            } else
+            {
+                enemy.Attack(PickRandomPlayable(playableCharacters));
+                yield return new WaitForSeconds(enemyAttackAnimTime);
+            }
         }
 
         if (ts != null)

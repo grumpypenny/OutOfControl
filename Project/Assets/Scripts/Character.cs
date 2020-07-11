@@ -33,7 +33,7 @@ public class Character : MonoBehaviour, ICharacter<float>
     [Header("Character states")]
     //public int position;
     protected bool dead;
-    protected bool isTaunting;
+    public bool isTaunting;
 
     // Start is called before the first frame update
     public virtual void Start()
