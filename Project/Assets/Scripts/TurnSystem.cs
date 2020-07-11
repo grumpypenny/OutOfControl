@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
+	public static int turnCount = 1;
+
 	[Header("Player Characters")]
 	public Character Wizard;
 	public Character Ranger;
@@ -77,6 +79,8 @@ public class TurnSystem : MonoBehaviour
 		{
 			// next round
 			// start the loop again
+			turnCount++;
+
 			StartCoroutine(Game());
 		}
 	}
