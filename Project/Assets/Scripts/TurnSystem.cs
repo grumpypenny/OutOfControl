@@ -85,8 +85,7 @@ public class TurnSystem : MonoBehaviour
 		player2Done = false;
 		player3Done = false;
 
-		// TODO: Start enemy turn from manager
-		em.StartEnemyTurn(gm.playableCharacters, this);
+		StartCoroutine(em.StartEnemyTurn(gm.playableCharacters, this));
 		// then enemy turn
 		yield return StartCoroutine(Enemy());
 

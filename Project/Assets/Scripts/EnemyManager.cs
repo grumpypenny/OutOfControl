@@ -7,20 +7,6 @@ public class EnemyManager : MonoBehaviour
     public EnemyCharacter[] enemies;
     public float enemyAttackAnimTime = 1f;
 
-    public void StartEnemyTurn(PlayableCharacter[] playableCharacters, TurnSystem ts)
-    {
-        foreach (EnemyCharacter enemy in enemies)
-        {
-            enemy.Attack(PickRandomPlayable(playableCharacters));
-            StartCoroutine(EnemyAttack());
-        }
-
-        if (ts != null)
-        {
-            ts.SetEnemyAction();
-        }
-    }
-
     PlayableCharacter PickRandomPlayable(PlayableCharacter[] playableCharacters)
     {
         int weightDenom = 0;
@@ -43,9 +29,18 @@ public class EnemyManager : MonoBehaviour
         return playableCharacters[index];
     }
 
-    private IEnumerator EnemyAttack()
+    public IEnumerator StartEnemyTurn(PlayableCharacter[] playableCharacters, TurnSystem ts)
     {
-        yield return new WaitForSeconds(enemyAttackAnimTime);
+        foreach (EnemyCharacter enemy in enemies)
+        {
+            enemy.Attack(PickRandomPlayable(playableCharacters));
+            yield return new WaitForSeconds(enemyAttackAnimTime);
+        }
+
+        if (ts != null)
+        {
+            ts.SetEnemyAction();
+        }
     }
 
     // Update is called once per frame
