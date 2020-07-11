@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, ICharacter<float>
     [Space]
 
     [Header("Character states")]
-    public float position;
+    public int position;
     protected bool dead;
     protected bool isTaunting;
 

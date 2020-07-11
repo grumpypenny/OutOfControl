@@ -15,11 +15,11 @@ public class HealerSorcerer : PlayableCharacter
     {
         if (isSupport)
         {
-            Heal(heal);
+            Heal(heal * positionMultiplier[position]);
         }
         else
         {
-            // Enemy.TakeHit(offence * baseOffence)
+            // Enemy.TakeHit(offence * baseOffence * positionMultiplier[position])
         }
     }
 }

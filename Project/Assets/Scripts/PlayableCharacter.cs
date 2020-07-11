@@ -6,6 +6,7 @@ public class PlayableCharacter : Character
 {
     Card card;
     public int defenceBuff;
+    public static float[] positionMultiplier = { 0.75f, 1f, 1.5f };
     protected bool starCardActive;
     protected bool isSupport;
     // Start is called before the first frame update

@@ -14,12 +14,17 @@ public class DruidRanger : PlayableCharacter
     // TODO: Do this on a random ally
     protected override void ActionCard()
     {
+        float effectMultiplier = positionMultiplier[position];
+        if (effectMultiplier == 0.75f)
+        {
+            effectMultiplier = 1f;
+        }
         if (isSupport)
         {
-            SetDefence(GetDefence() + druidDefenceBuff);
+            SetDefence(GetDefence() + druidDefenceBuff * effectMultiplier);
         } else
         {
-            // Enemy.TakeHit(offence * baseOffence)
+            // Enemy.TakeHit(offence * baseOffence * effectMultiplier)
         }
     }
 }
