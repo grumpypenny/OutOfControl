@@ -19,7 +19,7 @@ public class EnemyCharacter : Character
         
     }
 
-    void Attack(PlayableCharacter pc)
+    public void Attack(PlayableCharacter pc)
     {
         pc.TakeHit(offence * baseOffence);
     }

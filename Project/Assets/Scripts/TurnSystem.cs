@@ -28,11 +28,13 @@ public class TurnSystem : MonoBehaviour
 	private bool isEnemyActionDone = false;
 
 	private GameManager gm;
+	private EnemyManager em;
 
     // Start is called before the first frame update
     void Start()
     {
 		gm = FindObjectOfType<GameManager>();
+		em = FindObjectOfType<EnemyManager>();
 		StartCoroutine(Game());
     }
 
@@ -83,8 +85,10 @@ public class TurnSystem : MonoBehaviour
 		player2Done = false;
 		player3Done = false;
 
-	// then enemy turn
-	yield return StartCoroutine(Enemy());
+		// TODO: Start enemy turn from manager
+		em.StartEnemyTurn(gm.playableCharacters, this);
+		// then enemy turn
+		yield return StartCoroutine(Enemy());
 
 		// reset bool
 		isEnemyActionDone = false;

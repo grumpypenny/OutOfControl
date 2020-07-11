@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayableCharacter : Character
 {
+    #region fields
     /// <summary>
     /// Card held by this character
     /// </summary>
@@ -28,6 +29,7 @@ public class PlayableCharacter : Character
     /// Tracks if character is acting as support role
     /// </summary>
     protected bool isSupport;
+    #endregion
     // Start is called before the first frame update
     public override void Start()
     {
