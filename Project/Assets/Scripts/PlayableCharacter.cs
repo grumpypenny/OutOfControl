@@ -58,16 +58,6 @@ public class PlayableCharacter : Character
                 SetDefence(GetDefence() + defenceCardBuff * starMultiplier);
             }
 
-            if (card.cardType == CardType.MoveBackward)
-            {
-                print("Implement positions");
-            }
-
-            if (card.cardType == CardType.MoveForward)
-            {
-                print("Implement positions");
-            }
-
             if (card.cardType == CardType.Taunt)
             {
                 isTaunting = true;
