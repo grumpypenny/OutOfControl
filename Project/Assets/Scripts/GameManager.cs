@@ -14,11 +14,16 @@ public class GameManager : MonoBehaviour
 	public Transform[] CardPos;
 	private int index = 0;
 
+	private TurnSystem ts;
+
+	private void Start()
+	{
+		ts = FindObjectOfType<TurnSystem>();
+	}
+
 	// Add a card to the player actions
 	public void AddCard(CardType type)
 	{
-		print(type);
-
 		if (index > CardPos.Length)
 		{
 			Debug.LogError("Not Enough Card Pos");
@@ -26,8 +31,11 @@ public class GameManager : MonoBehaviour
 		}
 
 		// spawn card as child of positon
-		Instantiate(CardObject, CardPos[index]);
+		GameObject card = Instantiate(CardObject, CardPos[index]);
+		Card newCard = card.GetComponent<Card>();
+		newCard.cardType = type;
 		index++;
+		turnActions.Add(newCard);
 	}
 
 	// Remove all cards from player actions
@@ -61,7 +69,39 @@ public class GameManager : MonoBehaviour
 			Card card = turnActions[rando];
 			turnActions.RemoveAt(rando);
 
+			// give the players the card
 			pc.SetCard(card);
+			//print(pc.gameObject.name + " got " + card.cardType);
 		}
+
+		StartCoroutine(delayAttacks(2f));
+
+		// reset the current cards
+		StartCoroutine(resetAfterTime(1f));
+		
+	}
+
+	private IEnumerator delayAttacks(float time)
+	{
+		int num = 0;
+		foreach (PlayableCharacter pc in playableCharacters)
+		{
+			//print(pc.gameObject.name + " card is " + pc.GetCardType());
+			pc.UseCard();
+			num++;
+			yield return new WaitForSeconds(time);
+
+			if (ts != null)
+			{
+				ts.SetActionDone(num);
+			}
+		}
+	}
+
+	private IEnumerator resetAfterTime(float time)
+	{
+		yield return new WaitForSeconds(time);
+
+		ResetCards();
 	}
 }

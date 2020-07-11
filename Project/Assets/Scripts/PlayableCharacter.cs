@@ -40,48 +40,57 @@ public class PlayableCharacter : Character
     /// <summary>
     /// Makes this character use the held card
     /// </summary>
-    void UseCard()
+    public void UseCard()
     {
-        if (card != null)
+        if (card.cardType == CardType.Action)
         {
-            if (card.cardType == CardType.Action)
-            {
-                ActionCard();
-            }
+            ActionCard();
+			print(this.gameObject.name + " Action");
+		}
 
-            if (card.cardType == CardType.Defence)
+        if (card.cardType == CardType.Defence)
+        {
+            int starMultiplier = 1;
+            if (starCardActive)
             {
-                int starMultiplier = 1;
-                if (starCardActive)
-                {
-                    starMultiplier = 4;
-                    starCardActive = false;
-                }
-                SetDefence(GetDefence() + defenceCardBuff * starMultiplier);
-            }
-
-            if (card.cardType == CardType.Taunt)
-            {
-                isTaunting = true;
+                starMultiplier = 4;
                 starCardActive = false;
             }
+            SetDefence(GetDefence() + defenceCardBuff * starMultiplier);
+			print(this.gameObject.name + " Defence");
+		}
 
-            if (card.cardType == CardType.Star)
-            {
-                starCardActive = true;
-            }
-
-            card = null;
-        } else
+        if (card.cardType == CardType.Taunt)
         {
-            print("this character's card is null");
-        }
+            isTaunting = true;
+            starCardActive = false;
+			print(this.gameObject.name + " Taunt");
+		}
+
+        if (card.cardType == CardType.Star)
+        {
+            starCardActive = true;
+			print(this.gameObject.name + " Star");
+		}        
     }
+
+	public void isCardNull()
+	{
+		if (card == null)
+		{
+			print(this.gameObject.name + " card is null");
+		}
+	}
 
     public void SetCard(Card card)
     {
         this.card = card;
     }
+
+	public CardType GetCardType()
+	{
+		return this.card.cardType;
+	}
 
     /// <summary>
     /// Executes this character's specific effect.
