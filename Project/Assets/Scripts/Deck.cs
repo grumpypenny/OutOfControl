@@ -18,7 +18,6 @@ public class Deck : MonoBehaviour
 	public void ToggleDeck()
 	{
 		open = !open;
-		print(open);
 		anim.SetBool("open", open);
 	}
 }
