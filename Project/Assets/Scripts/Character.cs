@@ -2,31 +2,36 @@
 using UnityEngine;
 
 // This class is for any game object that needs stats such as health, defence, and offence
-public class Character : MonoBehaviour, ICharacter<int>
+/* NOTES:
+ * base defence and offence is between 0 and 1
+ * to buff defence or offence stat, increase the defence or offence variable and vice versa
+ */
+
+public class Character : MonoBehaviour, ICharacter<float>
 {
     [Header("Base stats")]
-    public int startHealth;
-    protected int health;
+    public float startHealth;
+    protected float health;
 
-    public int startBaseDefence;
-    protected int baseDefence;
+    public float startBaseDefence;
+    protected float baseDefence;
 
-    public int startBaseOffence;
-    protected int baseOffence;
+    public float startBaseOffence;
+    protected float baseOffence;
 
     [Space]
 
     [Header("Base stat multipliers")]
-    public int startDefence;
-    protected int defence;
+    public float startDefence;
+    protected float defence;
 
-    public int startOffence;
-    protected int offence;
+    public float startOffence;
+    protected float offence;
 
     [Space]
 
     [Header("Character states")]
-    public int position;
+    public float position;
     protected bool dead;
     protected bool isTaunting;
 
@@ -45,50 +50,75 @@ public class Character : MonoBehaviour, ICharacter<int>
         isTaunting = false;
     }
 
-    // Character takes damage damage
-    public void TakeHit(int damage)
+    /// <summary>
+    /// This character loses health equal to damage. Falling to zero or less health causes character death.
+    /// </summary>
+    /// <param name="damage">Desired loss of health</param>
+    public void TakeHit(float damage)
     {
-        health -= damage;
+        health -= damage * (baseDefence * defence);
         if (health <= 0)
         {
             Die();
         }
     }
 
-    // Character gains health health
-    public void Heal(int health)
+    /// <summary>
+    /// This character's health increases by health
+    /// </summary>
+    /// <param name="health">This character's current health</param>
+    public void Heal(float health)
     {
         this.health += health;
     }
 
-    // Setters for base stat multipliers
-    public void SetOffence(int offence)
+    /// <summary>
+    /// Sets this character's offence multipler to defence
+    /// </summary>
+    /// <param name="offence">The offence multipler desired</param>
+    public void SetOffence(float offence)
     {
         this.offence = offence;
     }
 
-    public int GetOffence()
+    /// <summary>
+    /// Returns this character's offence multiplier
+    /// </summary>
+    /// <returns>this character's offence multiplier</returns>
+    public float GetOffence()
     {
         return offence;
     }
 
-    public void SetDefence(int defence)
+    /// <summary>
+    /// Sets this character's defence multipler to defence
+    /// </summary>
+    /// <param name="defence">The defence multipler desired</param>
+    public void SetDefence(float defence)
     {
         this.defence = defence;
     }
 
-    public int GetDefence()
+    /// <summary>
+    /// Returns this character's defence multiplier
+    /// </summary>
+    /// <returns>this character's defence multiplier</returns>
+    public float GetDefence()
     {
         return defence;
     }
 
-    // Method executed on death of character
+    /// <summary>
+    /// Kill this character
+    /// </summary>
     public void Die()
     {
         dead = true;
-        GameObject.Destroy(gameObject);
     }
 
+    /// <summary>
+    /// End of turn stat adjustments
+    /// </summary>
     public void onTurnEnd()
     {
         defence = startDefence;

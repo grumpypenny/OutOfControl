@@ -6,7 +6,8 @@ public class PlayableCharacter : Character
 {
     Card card;
     public int defenceBuff;
-    bool starCardActive;
+    protected bool starCardActive;
+    protected bool isSupport;
     // Start is called before the first frame update
     public override void Start()
     {
@@ -34,11 +35,16 @@ public class PlayableCharacter : Character
                 SetDefence(GetDefence() + defenceBuff * starMultiplier);
             }
 
-            if (card.cardType == CardType.Movement)
+            if (card.cardType == CardType.MoveBackward)
             {
                 print("Implement positions");
             }
-            
+
+            if (card.cardType == CardType.MoveForward)
+            {
+                print("Implement positions");
+            }
+
             if (card.cardType == CardType.Taunt)
             {
                 isTaunting = true;
@@ -53,7 +59,7 @@ public class PlayableCharacter : Character
     }
 
     // Each player character class needs to implement this
-    void ActionCard()
+    protected virtual void ActionCard()
     {
         throw new System.NotImplementedException();
     }

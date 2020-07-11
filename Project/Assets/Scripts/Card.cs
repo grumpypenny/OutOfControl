@@ -6,7 +6,8 @@ public enum CardType
 {
     Action,
     Defence,
-    Movement,
+    MoveForward,
+    MoveBackward,
     Taunt,
     Star
 }
