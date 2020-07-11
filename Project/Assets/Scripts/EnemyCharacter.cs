@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This Character Attacks playable characters
+/// </summary>
 public class EnemyCharacter : Character
 {
     // Start is called before the first frame update
@@ -18,6 +21,6 @@ public class EnemyCharacter : Character
 
     void Attack(PlayableCharacter pc)
     {
-        pc.TakeHit(offence);
+        pc.TakeHit(offence * baseOffence);
     }
 }

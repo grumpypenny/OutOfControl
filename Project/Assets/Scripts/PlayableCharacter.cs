@@ -4,10 +4,29 @@ using UnityEngine;
 
 public class PlayableCharacter : Character
 {
+    /// <summary>
+    /// Card held by this character
+    /// </summary>
     Card card;
-    public int defenceBuff;
+
+    /// <summary>
+    /// defence multiplier value for the defence card
+    /// </summary>
+    public int defenceCardBuff;
+
+    /// <summary>
+    /// positional bonuses/penalties for action card effects
+    /// </summary>
     public static float[] positionMultiplier = { 0.75f, 1f, 1.5f };
+
+    /// <summary>
+    /// Tracks if the star card should affect the next card
+    /// </summary>
     protected bool starCardActive;
+
+    /// <summary>
+    /// Tracks if character is acting as support role
+    /// </summary>
     protected bool isSupport;
     // Start is called before the first frame update
     public override void Start()
@@ -16,6 +35,9 @@ public class PlayableCharacter : Character
         starCardActive = false;
     }
 
+    /// <summary>
+    /// Makes this character use the held card
+    /// </summary>
     void UseCard()
     {
         if (card != null)
@@ -33,7 +55,7 @@ public class PlayableCharacter : Character
                     starMultiplier = 4;
                     starCardActive = false;
                 }
-                SetDefence(GetDefence() + defenceBuff * starMultiplier);
+                SetDefence(GetDefence() + defenceCardBuff * starMultiplier);
             }
 
             if (card.cardType == CardType.MoveBackward)
@@ -56,12 +78,19 @@ public class PlayableCharacter : Character
             {
                 starCardActive = true;
             }
+
+            card = null;
+        } else
+        {
+            print("this character's card is null");
         }
     }
 
-    // Each player character class needs to implement this
+    /// <summary>
+    /// Executed this character's specific effect.
+    /// </summary>
     protected virtual void ActionCard()
     {
-        throw new System.NotImplementedException();
+        print("This is not a real player, please instantiate a Healer, Cleric, or Druid instead.");
     }
 }

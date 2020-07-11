@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Enumerator for different card types
+/// </summary>
 public enum CardType
 {
     Action,
     Defence,
-    MoveForward,
-    MoveBackward,
     Taunt,
     Star
 }
 
+/// <summary>
+/// Holds a CardType
+/// </summary>
 public class Card : MonoBehaviour
 {
     public CardType cardType;

@@ -16,7 +16,7 @@ public class ClericPaladin : PlayableCharacter
 
         if (isSupport)
         {
-            SetOffence(GetOffence() + clericOffenceBuff * positionMultiplier[position]);
+            SetOffence(GetOffence() + clericOffenceBuff);
         }
         else
         {

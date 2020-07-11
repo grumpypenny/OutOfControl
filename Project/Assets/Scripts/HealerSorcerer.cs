@@ -15,7 +15,7 @@ public class HealerSorcerer : PlayableCharacter
     {
         if (isSupport)
         {
-            Heal(heal * positionMultiplier[position]);
+            Heal(heal);
         }
         else
         {

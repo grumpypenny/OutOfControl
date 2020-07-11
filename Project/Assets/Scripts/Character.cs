@@ -3,7 +3,7 @@ using UnityEngine;
 
 // This class is for any game object that needs stats such as health, defence, and offence
 /* NOTES:
- * base defence and offence is between 0 and 1
+ * base defence and base offence are between 0 and 1
  * to buff defence or offence stat, increase the defence or offence variable and vice versa
  */
 
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour, ICharacter<float>
     [Space]
 
     [Header("Character states")]
-    public int position;
+    //public int position;
     protected bool dead;
     protected bool isTaunting;
 
