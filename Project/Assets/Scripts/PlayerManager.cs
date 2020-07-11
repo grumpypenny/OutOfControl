@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        return lowestHP;s
+        return lowestHP;
     }
 
     public PlayableCharacter GetRandomPlayer()
