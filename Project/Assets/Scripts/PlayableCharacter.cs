@@ -46,6 +46,8 @@ public class PlayableCharacter : Character
 
 	protected SpriteRenderer sr;
 
+	protected Animator anim;
+
     #endregion
     // Start is called before the first frame update
     public override void Start()
@@ -54,21 +56,31 @@ public class PlayableCharacter : Character
         starCardActive = false;
         pm = FindObjectOfType<PlayerManager>();
 		sr = GetComponent<SpriteRenderer>();
-    }
+		anim = GetComponent<Animator>();
+	}
 
     /// <summary>
     /// Makes this character use the held card
     /// </summary>
     public void UseCard()
     {
+		ResetAnimTriggers();
+
         if (card.cardType == CardType.Action)
         {
+			// support anim is the same for all characters
+			if (isSupport)
+			{
+				anim.SetTrigger("Heal");
+			}
+
             ActionCard();
 			print(this.gameObject.name + " Action");
 		}
 
         if (card.cardType == CardType.Defence)
         {
+			anim.SetTrigger("Defence");
             int starMultiplier = 1;
             if (starCardActive)
             {
@@ -81,6 +93,7 @@ public class PlayableCharacter : Character
 
         if (card.cardType == CardType.Taunt)
         {
+			anim.SetTrigger("Taunt");
             isTaunting = true;
             starCardActive = false;
 			print(this.gameObject.name + " Taunt");
@@ -88,6 +101,7 @@ public class PlayableCharacter : Character
 
         if (card.cardType == CardType.Star)
         {
+			anim.SetTrigger("Star");
             starCardActive = true;
 			print(this.gameObject.name + " Star");
 		}        
@@ -125,4 +139,17 @@ public class PlayableCharacter : Character
     {
         print("This is not a real player, please instantiate a Healer, Cleric, or Druid instead.");
     }
+
+	protected void ResetAnimTriggers()
+	{
+		if (anim == null)
+		{
+			print("anim not configured");
+		}
+
+		foreach (AnimatorControllerParameter param in anim.parameters)
+		{
+			anim.ResetTrigger(param.name);
+		}
+	}
 }

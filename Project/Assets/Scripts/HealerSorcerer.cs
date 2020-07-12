@@ -26,6 +26,8 @@ public class HealerSorcerer : PlayableCharacter
         }
         else
         {
+			anim.SetTrigger("Fire");
+
 			EnemyCharacter enemy = pm.GetRandomEnemy();
 
 			if (enemy != null)

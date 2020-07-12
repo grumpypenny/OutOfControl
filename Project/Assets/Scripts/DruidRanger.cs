@@ -32,6 +32,7 @@ public class DruidRanger : PlayableCharacter
 		}
 		else
 		{
+			anim.SetTrigger("Attack");
 			EnemyCharacter enemy = pm.GetRandomEnemy();
 
 			if (enemy != null)
