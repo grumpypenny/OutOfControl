@@ -11,14 +11,23 @@ public class EnemyManager : MonoBehaviour
     public float enemyAttackAnimTime = 1f;
 
     /// <summary>
-    /// 
+    /// Enemy chooses random player with higher chance of picking frontline
     /// </summary>
     /// <param name="playableCharacters"></param>
     /// <returns></returns>
     PlayableCharacter PickRandomPlayable(PlayableCharacter[] playableCharacters)
     {
+        List<PlayableCharacter> livingPlayers = new List<PlayableCharacter>();
+        foreach (PlayableCharacter player in playableCharacters)
+        {
+            if (!player.dead)
+            {
+                livingPlayers.Add(player);
+            }
+        }
+
         int weightDenom = 0;
-        for (int i = 1; i < playableCharacters.Length+1; i++)
+        for (int i = 1; i < livingPlayers.Count+1; i++)
         {
             weightDenom += i;
         }
@@ -34,7 +43,7 @@ public class EnemyManager : MonoBehaviour
             index++;
         }
 
-        return playableCharacters[index];
+        return livingPlayers[index];
     }
 
     public IEnumerator StartEnemyTurn(EnemyCharacter[] enemies, PlayableCharacter[] playableCharacters, TurnSystem ts)
