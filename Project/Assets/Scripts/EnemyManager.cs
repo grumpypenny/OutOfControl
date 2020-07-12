@@ -43,6 +43,11 @@ public class EnemyManager : MonoBehaviour
             index++;
         }
 
+		if (livingPlayers.Count == 0)
+		{
+			return null;
+		}
+
         return livingPlayers[index];
     }
 

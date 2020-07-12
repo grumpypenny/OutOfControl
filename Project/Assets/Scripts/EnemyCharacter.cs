@@ -21,6 +21,11 @@ public class EnemyCharacter : Character
 
     public void Attack(PlayableCharacter pc)
     {
+		if (pc == null)
+		{
+			return;
+		}
+
 		if (dead)
 		{
 			return;
