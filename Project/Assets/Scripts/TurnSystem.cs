@@ -24,6 +24,7 @@ public class TurnSystem : MonoBehaviour
 
 	[Header("UI")]
 	public TMP_Text turnText;
+	public TMP_Text turnCountText;
 
 	private bool isGameOver = false;
 	private bool isDrawDone = false;
@@ -110,6 +111,7 @@ public class TurnSystem : MonoBehaviour
 			// next round
 			// start the loop again
 			turnCount++;
+			turnCountText.text = "Turn " + turnCount;
 
 			StartCoroutine(Game());
 		}
