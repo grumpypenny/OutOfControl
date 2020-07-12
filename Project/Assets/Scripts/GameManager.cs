@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 		// spawn card as child of positon
 		GameObject card = Instantiate(CardObject, CardPos[index]);
 		Card newCard = card.GetComponent<Card>();
-		newCard.cardType = type;
+		newCard.SetCardType(type);
 		index++;
 		turnActions.Add(newCard);
 	}

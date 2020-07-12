@@ -62,8 +62,6 @@ public class TurnSystem : MonoBehaviour
 				player3Done = true;
 				break;
 		}
-
-
 	}
 
 	public void SetEnemyAction()

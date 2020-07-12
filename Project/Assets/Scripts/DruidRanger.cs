@@ -16,17 +16,28 @@ public class DruidRanger : PlayableCharacter
 
     protected override void ActionCard()
     {
-        //float effectMultiplier = positionMultiplier[position];
-        //if (effectMultiplier == 0.75f)
-        //{
-        //    effectMultiplier = 1f;
-        //}
-        if (isSupport)
-        {
-            pm.GetRandomPlayer().SetDefence(GetDefence() + druidDefenceBuff);
-        } else
-        {
-            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
-        }
+		//float effectMultiplier = positionMultiplier[position];
+		//if (effectMultiplier == 0.75f)
+		//{
+		//    effectMultiplier = 1f;
+		//}
+		if (isSupport)
+		{
+			PlayableCharacter target = pm.GetRandomPlayer();
+
+			if (target != null)
+			{
+				target.SetDefence(GetDefence() + druidDefenceBuff);
+			}
+		}
+		else
+		{
+			EnemyCharacter enemy = pm.GetRandomEnemy();
+
+			if (enemy != null)
+			{
+				enemy.TakeHit(offence * baseOffence);
+			}
+		}
     }
 }

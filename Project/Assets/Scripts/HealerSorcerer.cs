@@ -26,7 +26,12 @@ public class HealerSorcerer : PlayableCharacter
         }
         else
         {
-            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
-        }
+			EnemyCharacter enemy = pm.GetRandomEnemy();
+
+			if (enemy != null)
+			{
+				enemy.TakeHit(offence * baseOffence);
+			}
+		}
     }
 }

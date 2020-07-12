@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardType: 0
+  action: {fileID: 21300000, guid: 3a7b0105dd35e1540ae544e933e8ec55, type: 3}
+  defence: {fileID: 21300000, guid: 804fa77d5bcfd934a9cf2d54f68101bf, type: 3}
+  taunt: {fileID: 21300000, guid: 808f94f7691ca55499d043a17a9895af, type: 3}
+  star: {fileID: 21300000, guid: 15155ca2779d2564580ea79428376a96, type: 3}
 --- !u!212 &1598313383
 SpriteRenderer:
   m_ObjectHideFlags: 0

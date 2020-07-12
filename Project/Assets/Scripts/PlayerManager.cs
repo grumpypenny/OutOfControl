@@ -42,6 +42,12 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+		if (livingPlayers.Count == 0)
+		{
+			print("all players are dead");
+			return null;
+		}
+
         int index = Random.Range(0, livingPlayers.Count);
         return livingPlayers[index];
     }
@@ -56,6 +62,12 @@ public class PlayerManager : MonoBehaviour
                 livingEnemies.Add(enemy);
             }
         }
+
+		if (livingEnemies.Count == 0)
+		{
+			print("all enemies are dead");
+			return null;
+		}
 
         int index = Random.Range(0, livingEnemies.Count);
         return livingEnemies[index];

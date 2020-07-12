@@ -16,13 +16,23 @@ public class ClericPaladin : PlayableCharacter
     protected override void ActionCard()
     {
 
-        if (isSupport)
-        {
-            pm.GetRandomPlayer().SetOffence(GetOffence() + clericOffenceBuff);
-        }
-        else
-        {
-            pm.GetRandomEnemy().TakeHit(offence * baseOffence);
-        }
+		if (isSupport)
+		{
+			PlayableCharacter target = pm.GetRandomPlayer();
+
+			if (target != null)
+			{
+				target.SetOffence(GetOffence() + clericOffenceBuff);
+			}
+		}
+		else
+		{
+			EnemyCharacter enemy = pm.GetRandomEnemy();
+
+			if (enemy != null)
+			{
+				enemy.TakeHit(offence * baseOffence);
+			}
+		}
     }
 }
