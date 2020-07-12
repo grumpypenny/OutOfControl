@@ -45,9 +45,6 @@ public class PlayableCharacter : Character
     protected PlayerManager pm;
 
 	protected SpriteRenderer sr;
-
-	protected Animator anim;
-
     #endregion
     // Start is called before the first frame update
     public override void Start()
@@ -56,7 +53,6 @@ public class PlayableCharacter : Character
         starCardActive = false;
         pm = FindObjectOfType<PlayerManager>();
 		sr = GetComponent<SpriteRenderer>();
-		anim = GetComponent<Animator>();
 	}
 
     /// <summary>
@@ -139,17 +135,4 @@ public class PlayableCharacter : Character
     {
         print("This is not a real player, please instantiate a Healer, Cleric, or Druid instead.");
     }
-
-	protected void ResetAnimTriggers()
-	{
-		if (anim == null)
-		{
-			print("anim not configured");
-		}
-
-		foreach (AnimatorControllerParameter param in anim.parameters)
-		{
-			anim.ResetTrigger(param.name);
-		}
-	}
 }

@@ -39,9 +39,10 @@ public class Character : MonoBehaviour, ICharacter<float>
 
     [Header("Components")]
     public HealthBar healthBar;
+	protected Animator anim;
 
-    // Start is called before the first frame update
-    public virtual void Start()
+	// Start is called before the first frame update
+	public virtual void Start()
     {
         health = startHealth;
 
@@ -56,14 +57,21 @@ public class Character : MonoBehaviour, ICharacter<float>
 
         healthBar.SetMaxHealth(startHealth);
         healthBar.SetHealth(health);
-    }
 
-    /// <summary>
-    /// This character loses health equal to damage. Falling to zero or less health causes character death.
-    /// </summary>
-    /// <param name="damage">Desired loss of health</param>
-    public void TakeHit(float damage)
+		anim = GetComponent<Animator>();
+
+	}
+
+	/// <summary>
+	/// This character loses health equal to damage. Falling to zero or less health causes character death.
+	/// </summary>
+	/// <param name="damage">Desired loss of health</param>
+	public void TakeHit(float damage)
     {
+		ResetAnimTriggers();
+
+		anim.SetTrigger("Hit");
+
         health -= damage * (baseDefence * defence);
         healthBar.SetHealth(health);
         if (health <= 0)
@@ -123,6 +131,10 @@ public class Character : MonoBehaviour, ICharacter<float>
     /// </summary>
     public void Die()
     {
+		ResetAnimTriggers();
+
+		anim.SetTrigger("Death");
+
         dead = true;
     }
 
@@ -136,4 +148,17 @@ public class Character : MonoBehaviour, ICharacter<float>
 
         isTaunting = false;
     }
+
+	protected void ResetAnimTriggers()
+	{
+		if (anim == null)
+		{
+			print("anim not configured");
+		}
+
+		foreach (AnimatorControllerParameter param in anim.parameters)
+		{
+			anim.ResetTrigger(param.name);
+		}
+	}
 }
