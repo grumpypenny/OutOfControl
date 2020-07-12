@@ -35,6 +35,7 @@ public class TurnSystem : MonoBehaviour
 	private GameManager gm;
 	private EnemyManager em;
 	private PlayerManager pm;
+	private Deck deck;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +43,7 @@ public class TurnSystem : MonoBehaviour
 		gm = FindObjectOfType<GameManager>();
 		em = FindObjectOfType<EnemyManager>();
 		pm = FindObjectOfType<PlayerManager>();
+		deck = FindObjectOfType<Deck>();
 		StartCoroutine(Game());
     }
 
@@ -115,6 +117,9 @@ public class TurnSystem : MonoBehaviour
 
 	private IEnumerator SetUp()
 	{
+		// reset the cards
+		deck.ResetGrid();
+
 		// spawn the enemies to the grid
 
 		// move the background to new env
@@ -173,5 +178,7 @@ public class TurnSystem : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(enemyTime);
+
+
 	}
 }

@@ -98,8 +98,10 @@ public class GameManager : MonoBehaviour
 			//print(pc.gameObject.name + " card is " + pc.GetCardType());
 			pc.UseCard();
 			num++;
-			yield return new WaitForSeconds(time);
-
+			if (!pc.dead)
+			{
+				yield return new WaitForSeconds(time);
+			}
 			if (ts != null)
 			{
 				ts.SetActionDone(num);
