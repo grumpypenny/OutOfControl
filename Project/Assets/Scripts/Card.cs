@@ -33,10 +33,8 @@ public class Card : MonoBehaviour
 		sr = GetComponent<SpriteRenderer>();
         cardType = ct;
 
-		print(sr == null);
 		if (sr != null)
 		{
-			print("changing sprite");
 			if (ct == CardType.Action)
 			{
 				sr.sprite = action;

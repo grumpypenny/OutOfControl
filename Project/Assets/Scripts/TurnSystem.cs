@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TurnSystem : MonoBehaviour
 {
 	public static int turnCount = 1;
 
 	[Header("Player Characters")]
-	public Character Wizard;
-	public Character Ranger;
-	public Character Tank;
+	public PlayableCharacter Wizard;
+	public PlayableCharacter Ranger;
+	public PlayableCharacter Tank;
 
 	[Space]
 
@@ -19,6 +19,11 @@ public class TurnSystem : MonoBehaviour
 	public float playerTime = 1f;
 	public float enemyTime = 1f;
 	public float endTime = 1f;
+
+	[Space]
+
+	[Header("UI")]
+	public TMP_Text turnText;
 
 	private bool isGameOver = false;
 	private bool isDrawDone = false;
@@ -29,12 +34,14 @@ public class TurnSystem : MonoBehaviour
 
 	private GameManager gm;
 	private EnemyManager em;
+	private PlayerManager pm;
 
     // Start is called before the first frame update
     void Start()
     {
 		gm = FindObjectOfType<GameManager>();
 		em = FindObjectOfType<EnemyManager>();
+		pm = FindObjectOfType<PlayerManager>();
 		StartCoroutine(Game());
     }
 
@@ -112,37 +119,53 @@ public class TurnSystem : MonoBehaviour
 
 		// move the background to new env
 
+		// change the classes of each character
+		int r = Random.Range(0, 3);
+
+		switch (r)
+		{
+			case 0:
+				Ranger.ToggleSupport();
+				Tank.ToggleSupport();
+				break;
+			case 1:
+				Ranger.ToggleSupport();
+				Wizard.ToggleSupport();
+				break;
+			case 3:
+				Tank.ToggleSupport();
+				Wizard.ToggleSupport();
+				break;
+		}
 		// wait for <startTime> seconds
 		yield return new WaitForSeconds(startTime);
 	}
 
 	private IEnumerator Player()
 	{
+		turnText.text = "Player's Turn";
+
 		// wait for player to draw
 		while (!isDrawDone)
 		{
 			yield return null;
 		}
+		print("draw is done");
 		// wait for characters to use actions
 		// actions implemented later
-		while (!player1Done)
-		{
-			yield return null;
-		}
-		while (!player2Done)
-		{
-			yield return null;
-		}
-		while (!player3Done)
+		while (!player1Done || !player2Done || !player3Done)
 		{
 			yield return null;
 		}
 
+		print("ending player turn");
 		yield return new WaitForSeconds(playerTime);
 	}
 
 	private IEnumerator Enemy()
 	{
+		turnText.text = "Enemy's Turn";
+
 		// wait for enemies to go
 		while (!isEnemyActionDone)
 		{

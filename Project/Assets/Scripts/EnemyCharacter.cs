@@ -21,6 +21,12 @@ public class EnemyCharacter : Character
 
     public void Attack(PlayableCharacter pc)
     {
+		if (dead)
+		{
+			return;
+		}
+
+		anim.SetTrigger("Attack");
         pc.TakeHit(offence * baseOffence);
     }
 }

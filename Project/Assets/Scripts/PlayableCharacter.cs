@@ -60,6 +60,11 @@ public class PlayableCharacter : Character
     /// </summary>
     public void UseCard()
     {
+		if (dead)
+		{
+			return;
+		}
+
 		ResetAnimTriggers();
 
         if (card.cardType == CardType.Action)
@@ -71,7 +76,7 @@ public class PlayableCharacter : Character
 			}
 
             ActionCard();
-			print(this.gameObject.name + " Action");
+			//print(this.gameObject.name + " Action");
 		}
 
         if (card.cardType == CardType.Defence)
@@ -124,6 +129,8 @@ public class PlayableCharacter : Character
 	[ContextMenu("Toggle Support")]
 	public void ToggleSupport()
 	{
+		sr = GetComponent<SpriteRenderer>();
+
 		isSupport = !isSupport;
 		sr.sprite = isSupport ? supportImg : attackImg;
 	}

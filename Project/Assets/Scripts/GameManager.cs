@@ -40,6 +40,11 @@ public class GameManager : MonoBehaviour
 		newCard.SetCardType(type);
 		index++;
 		turnActions.Add(newCard);
+
+		if (index >= 5 && ts != null)
+		{
+			ts.SetDrawOver();
+		}
 	}
 
 	// Remove all cards from player actions
