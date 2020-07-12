@@ -202,7 +202,7 @@ MonoBehaviour:
   startBaseDefence: 1
   startBaseOffence: 0.9
   startDefence: 1
-  startOffence: 10
+  startOffence: 8
   dead: 0
   isTaunting: 0
   healthBar: {fileID: 8642763191004624043}
@@ -211,7 +211,7 @@ MonoBehaviour:
     type: 3}
   attackImg: {fileID: 7160291847622700917, guid: 9eb5d51a87bdebd4a9ed8efe8cd5ba18,
     type: 3}
-  healAmount: 0
+  healAmount: 7
 --- !u!95 &485429745
 Animator:
   serializedVersion: 3

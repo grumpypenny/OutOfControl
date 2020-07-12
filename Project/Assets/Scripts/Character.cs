@@ -87,7 +87,11 @@ public class Character : MonoBehaviour, ICharacter<float>
     public void Heal(float health)
     {
         this.health += health;
-        healthBar.SetHealth(health);
+        if (this.health > startHealth)
+        {
+            this.health = startHealth;
+        }
+        healthBar.SetHealth(this.health);
     }
 
     /// <summary>

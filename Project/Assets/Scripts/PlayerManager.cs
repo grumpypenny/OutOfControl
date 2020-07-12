@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        print(lowestHP.gameObject.name);
         return lowestHP;
     }
 

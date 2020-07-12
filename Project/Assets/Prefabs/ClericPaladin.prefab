@@ -281,7 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startHealth: 17
   health: 0
-  startBaseDefence: 0.7
+  startBaseDefence: 0.9
   startBaseOffence: 0.7
   startDefence: 1
   startOffence: 5

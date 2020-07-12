@@ -226,6 +226,11 @@ public class TurnSystem : MonoBehaviour
 			yield return null;
 		}
 
+		foreach (PlayableCharacter player in gm.playableCharacters)
+		{
+			player.onTurnEnd();
+		}
+
 		yield return new WaitForSeconds(enemyTime);
 
 

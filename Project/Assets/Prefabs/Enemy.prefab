@@ -231,9 +231,9 @@ MonoBehaviour:
   startHealth: 15
   health: 0
   startBaseDefence: 1
-  startBaseOffence: 0.5
+  startBaseOffence: 0.7
   startDefence: 1
-  startOffence: 4
+  startOffence: 7
   dead: 0
   isTaunting: 0
   healthBar: {fileID: 4426289562201945092}
