@@ -20,6 +20,15 @@ public class PlayableCharacter : Character
     /// </summary>
     public static float[] positionMultiplier = { 0.75f, 1f, 1.5f };
 
+	/// <summary>
+	/// Sprite for the support state
+	/// </summary>
+	public Sprite supportImg;
+	/// <summary>
+	/// Sprite for the Attack state
+	/// </summary>
+	public Sprite attackImg;
+
     /// <summary>
     /// Tracks if the star card should affect the next card
     /// </summary>
@@ -34,6 +43,9 @@ public class PlayableCharacter : Character
     /// Player targetting system
     /// </summary>
     protected PlayerManager pm;
+
+	protected SpriteRenderer sr;
+
     #endregion
     // Start is called before the first frame update
     public override void Start()
@@ -41,6 +53,7 @@ public class PlayableCharacter : Character
         base.Start();
         starCardActive = false;
         pm = FindObjectOfType<PlayerManager>();
+		sr = GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -96,6 +109,13 @@ public class PlayableCharacter : Character
 	public CardType GetCardType()
 	{
 		return this.card.cardType;
+	}
+
+	[ContextMenu("Toggle Support")]
+	public void ToggleSupport()
+	{
+		isSupport = !isSupport;
+		sr.sprite = isSupport ? supportImg : attackImg;
 	}
 
     /// <summary>
