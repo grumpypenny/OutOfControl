@@ -173,6 +173,22 @@ public class TurnSystem : MonoBehaviour
 	{
 		turnText.text = "Enemy's Turn";
 
+		int livingEnemies = 0;
+
+		foreach (EnemyCharacter e in gm.enemies)
+		{
+			if (!e.dead)
+			{
+				livingEnemies++;
+			}
+		}
+
+		if (livingEnemies == 0)
+		{
+			isGameOver = true;
+			yield break;
+		}
+
 		// wait for enemies to go
 		while (!isEnemyActionDone)
 		{
