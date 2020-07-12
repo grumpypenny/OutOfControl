@@ -35,6 +35,11 @@ public class Character : MonoBehaviour, ICharacter<float>
     public bool dead;
     public bool isTaunting;
 
+    [Space]
+
+    [Header("Components")]
+    public HealthBar healthBar;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -48,6 +53,9 @@ public class Character : MonoBehaviour, ICharacter<float>
 
         dead = false;
         isTaunting = false;
+
+        healthBar.SetMaxHealth(startHealth);
+        healthBar.SetHealth(health);
     }
 
     /// <summary>
@@ -57,6 +65,7 @@ public class Character : MonoBehaviour, ICharacter<float>
     public void TakeHit(float damage)
     {
         health -= damage * (baseDefence * defence);
+        healthBar.SetHealth(health);
         if (health <= 0)
         {
             Die();
@@ -70,6 +79,7 @@ public class Character : MonoBehaviour, ICharacter<float>
     public void Heal(float health)
     {
         this.health += health;
+        healthBar.SetHealth(health);
     }
 
     /// <summary>
