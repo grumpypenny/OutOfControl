@@ -227,12 +227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06124521cd6f114c97871fac48f5e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 5
+  startHealth: 14
   health: 0
-  startBaseDefence: 10
-  startBaseOffence: 8
+  startBaseDefence: 0.9
+  startBaseOffence: 0.6
   startDefence: 1
-  startOffence: 1
+  startOffence: 6
   dead: 0
   isTaunting: 0
   healthBar: {fileID: 8830652088904571375}

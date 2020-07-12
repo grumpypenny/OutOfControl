@@ -468,9 +468,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnActions: []
   playableCharacters:
-  - {fileID: 1126552102}
-  - {fileID: 1717808592}
   - {fileID: 1217834104}
+  - {fileID: 1717808592}
+  - {fileID: 1126552102}
   enemies:
   - {fileID: 89665996}
   - {fileID: 872471373}

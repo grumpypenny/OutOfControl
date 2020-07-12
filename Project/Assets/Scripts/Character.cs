@@ -72,7 +72,7 @@ public class Character : MonoBehaviour, ICharacter<float>
 
 		anim.SetTrigger("Hit");
 
-        health -= damage * (baseDefence * defence);
+        health -= damage * (baseDefence / defence);
         healthBar.SetHealth(health);
         if (health <= 0)
         {
