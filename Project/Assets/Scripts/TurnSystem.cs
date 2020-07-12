@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TurnSystem : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class TurnSystem : MonoBehaviour
 	public TMP_Text turnText;
 	public TMP_Text turnCountText;
 
+	public GameObject winPanel;
+	public GameObject losePanel;
+
 	private bool isGameOver = false;
 	private bool isDrawDone = false;
 	private bool player1Done = false;
@@ -37,6 +41,8 @@ public class TurnSystem : MonoBehaviour
 	private EnemyManager em;
 	private PlayerManager pm;
 	private Deck deck;
+
+	private bool win = false;
 
     // Start is called before the first frame update
     void Start()
@@ -105,6 +111,14 @@ public class TurnSystem : MonoBehaviour
 		if (isGameOver)
 		{
 			// end the game
+			if (win)
+			{
+				winPanel.SetActive(true);
+			}
+			else
+			{
+				losePanel.SetActive(true);
+			}
 		}
 		else
 		{
@@ -152,6 +166,22 @@ public class TurnSystem : MonoBehaviour
 	{
 		turnText.text = "Player's Turn";
 
+		int livingPlayers = 0;
+		foreach (PlayableCharacter p in gm.playableCharacters)
+		{
+			if (!p.dead)
+			{
+				livingPlayers++;
+			}
+		}
+
+		if (livingPlayers == 0)
+		{
+			isGameOver = true;
+			win = false;
+			yield break;
+		}
+
 		// wait for player to draw
 		while (!isDrawDone)
 		{
@@ -186,6 +216,7 @@ public class TurnSystem : MonoBehaviour
 		if (livingEnemies == 0)
 		{
 			isGameOver = true;
+			win = true;
 			yield break;
 		}
 
